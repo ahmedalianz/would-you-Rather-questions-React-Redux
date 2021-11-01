@@ -1,0 +1,43 @@
+.login {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.login img{
+    width: 60%;border-radius: 20px;
+}
+.form-signin {
+    width: 70%;
+    min-width: 330px;
+    padding: 15px;
+    margin: auto;
+    color: #212121;
+    border: 4px solid;
+    border-radius: 25px;
+    border-color: aqua #ff993b purple grey;
+    animation: border 3s ease-in-out alternate-reverse infinite;
+}
+@keyframes border {
+    25%{
+        border-color:grey aqua #ff993b purple ;
+    }
+    50%{
+        border-color:purple grey aqua #ff993b;
+    }
+    100%{
+        border-color:#ff993b purple grey aqua;
+    }
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin select,.form-signin input {
+    padding: 15px;
+    border-radius:15px;
+    margin:20px 0 40px;
+    background-color: #ff9a3bb0;
+}

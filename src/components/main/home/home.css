@@ -1,0 +1,31 @@
+.card{
+    margin: 10px auto;
+    box-shadow: 1px 1px 1px black;
+}
+.avatar-q{
+    width:40%;margin-left: 15px;
+}
+.loader{
+    width: 7rem;height: 7rem;margin-top:200px
+}
+.chosen-option{
+    color: red;
+    padding:20px;
+    border: 1px solid blue;position: relative;
+}
+.badge-choice{
+    position: absolute;
+    font-size:12px;
+    background-color:gray;
+    padding:10px;
+    color: white;
+    border-radius: 20px;
+    transform: rotate(-45deg);
+    top: 10px;
+}
+.progress-barz{
+    position: relative;
+}
+.progress-barz span{
+    position: absolute;top:15px;left: 50px;
+}

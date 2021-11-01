@@ -1,0 +1,22 @@
+.navbar a:active{
+    color: red;
+}
+.navbar .buttonDisappear{
+    display: none;
+}
+.navbar .buttonAppear{
+    display: block;
+}
+.navbar .user-profile{
+    display:flex;margin-left: 150px;
+}
+.user-profile .profile-avatar{
+    width:20%;
+}
+
+@media  screen and (max-width:990px){
+    .navbar .user-profile{
+        margin-left: 0;
+    }
+    
+}
