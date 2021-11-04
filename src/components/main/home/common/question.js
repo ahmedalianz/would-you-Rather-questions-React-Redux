@@ -7,7 +7,7 @@ export default function Question({question}) {
                 <div className="card-body">
                     <h5 className="card-title">Would You Rather ?</h5>
                     <p className="card-text">{question.optionOne.text}...</p>
-                    <Link to={`/polls/${question.id}`} className="btn btn-primary">View Poll</Link>
+                    <Link to={`/questions/${question.id}`} className="btn btn-primary">View Poll</Link>
                 </div>
             </div>
         ):(

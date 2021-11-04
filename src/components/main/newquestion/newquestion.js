@@ -2,17 +2,21 @@ import React,{useState} from 'react'
 import {useDispatch ,useSelector} from 'react-redux'
 import {addQuestion} from '../../../redux/questions/unansweredq'
 import { v4 as uuid } from 'uuid'
+import { toast } from 'react-toastify'
+import { setCurrentUser } from '../../../redux/users/currentUser'
+import { setUsers } from '../../../redux/users/users'
 export default function NewQuestion() {
-  const [question,setQuestion]=useState('')
   const [option1,setOption1]=useState('')
   const [option2,setOption2]=useState('')
     const dispatch = useDispatch()
     const {questions} = useSelector(state => state.questions)
     const {user} = useSelector(state => state.currentUser)
+    const {users}=useSelector(state => state.users)
   const handleSubmit=(e)=>{
     e.preventDefault()
+    let newID=uuid()
     let newQuestion={
-      id:uuid(),
+      id:newID,
       author:user.id,
       timestamp:Date.now(),
       optionOne:{
@@ -24,23 +28,21 @@ export default function NewQuestion() {
         text:option2
       }
     }
+    const editedUser=Object.assign({},user,{questions:[...user.questions,newID]})
     dispatch(addQuestion({questions,newQuestion}))
+    dispatch(setCurrentUser(editedUser))
+    let userIndex=users.indexOf(user)
+    let editedUsers=Object.assign({},users,{[`${userIndex}`]:editedUser})
+    dispatch(setUsers(Object.values(editedUsers)))
+    toast.info('New question added Go Home page to view it')
   }
     return (
             <div className="card text-left">
-    <h4 className="card-title mt-2 ms-2">Add New Question</h4>
+    <h4 className="card-title mt-2 ms-2">Would You Rather ?</h4>
   <img className="card-img-top" src="https://codewithivy.com/wp-content/uploads/2020/12/ask-questions.png" alt=""/>
   <div className="card-body">
     <div className="card-text">
     <form onSubmit={handleSubmit}>
-<div className="form-group">
-  <label htmlFor="question" className="form-label">Question</label>
-  <input required type="text" id='question'
-    className="form-control"
-    value={question}
-    onChange={e=>setQuestion(e.target.value)}
-    placeholder="Your question here ..."/>
-</div>
 <div className="form-group">
   <label htmlFor="option1" className="form-label">Option 1</label>
   <input required type="text" id='option1'

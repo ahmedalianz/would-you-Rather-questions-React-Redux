@@ -17,6 +17,9 @@ const usersSlice=createSlice({
     reducers:{
         addUser:(state,action)=>{
             state.users=[...action.payload.users,action.payload.newUser]
+        },
+        setUsers:(state,action)=>{
+            state.users=action.payload
         }
     },
     extraReducers:{
@@ -33,4 +36,4 @@ const usersSlice=createSlice({
     }
 })
 export default usersSlice.reducer
-export const {addUser}=usersSlice.actions
+export const {addUser,setUsers}=usersSlice.actions

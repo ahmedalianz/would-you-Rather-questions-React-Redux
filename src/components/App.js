@@ -7,6 +7,7 @@ import Home from './main/home/home'
 import Poll from './main/home/common/poll'
 import NewQuestion from './main/newquestion/newquestion'
 import LeaderBoard from './main/leaderboard/leaderboard'
+import Nf404 from './nf404'
 import { useDispatch, useSelector } from 'react-redux'
 import {getUsers} from '../redux/users/users'
 import {getQuestions} from '../redux/questions/unansweredq'
@@ -18,14 +19,14 @@ export default function App() {
         dispatch(getQuestions())
     },[dispatch])
 
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn')
+    // const isLoggedIn = sessionStorage.getItem('isLoggedIn')
     let {user}=useSelector(state=>state.currentUser)
-    useEffect(() => {
-        if (isLoggedIn) {
-            user = JSON.parse(sessionStorage.getItem('currentUser'))
-            dispatch(setCurrentUser(user))
-        }
-    }, [isLoggedIn])
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         user = JSON.parse(sessionStorage.getItem('currentUser'))
+            // dispatch(setCurrentUser(user))
+    //     }
+    // }, [isLoggedIn])
 
     return (
     <BrowserRouter>
@@ -40,16 +41,17 @@ export default function App() {
             <Route path='/signup'>
             {user? <Home/> :<Signup/>}
             </Route>
-            <Route path='/polls/:id'>
+            <Route path='/questions/:id'>
                 {user?<Poll/>:<Login/>}
             </Route>
-            <Route path='/newquestion'>
+            <Route path='/add'>
                 {user?<NewQuestion/>:<Login/>}
             </Route>
             <Route path='/leaderboard'>
                 {user?<LeaderBoard/>:<Login/>}
             </Route>
-            <Redirect to='/'/>
+            <Route path='/notfound404' component={Nf404}/>
+            <Redirect to='/notfound404'/>
         </Switch>
         
      </BrowserRouter>

@@ -17,8 +17,8 @@ export default function Login() {
         }else{
             const user=users.find(u=>u.name===selection)
             dispatch(setCurrentUser(user))
-            sessionStorage.setItem('isLoggedIn',true)
-            sessionStorage.setItem('currentUser',JSON.stringify(user))
+            // sessionStorage.setItem('isLoggedIn',true)
+            // sessionStorage.setItem('currentUser',JSON.stringify(user))
         }
     }
 
@@ -38,9 +38,7 @@ export default function Login() {
                                 ))}
                         </select>
                     </div>            
-                    <Link to='/'>
                     <button onClick={handleSubmit} className="w-50 btn btn-lg btn-dark" type="submit">Sign in</button>
-                    </Link>
                 </form>
             </div>
         </div>

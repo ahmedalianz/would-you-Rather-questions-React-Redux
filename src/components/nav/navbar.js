@@ -43,10 +43,10 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/home">Home</Link>
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/newquestion">New Question</Link>
+                            <Link className="nav-link" to="/add">New Question</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/leaderboard">LeaderBoard</Link>
