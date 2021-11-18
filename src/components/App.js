@@ -19,15 +19,7 @@ export default function App() {
         dispatch(getQuestions())
     },[dispatch])
 
-    // const isLoggedIn = sessionStorage.getItem('isLoggedIn')
     let {user}=useSelector(state=>state.currentUser)
-    // useEffect(() => {
-    //     if (isLoggedIn) {
-    //         user = JSON.parse(sessionStorage.getItem('currentUser'))
-            // dispatch(setCurrentUser(user))
-    //     }
-    // }, [isLoggedIn])
-
     return (
     <BrowserRouter>
         <Navbar/>
@@ -35,7 +27,7 @@ export default function App() {
             <Route path='/' exact>
                 {user? <Home/> :<Login/>}
             </Route>
-            <Route path='/login' exact>
+            <Route path='/login'>
                 {user? <Home/> :<Login/>}
             </Route>
             <Route path='/signup'>
@@ -55,6 +47,5 @@ export default function App() {
         </Switch>
         
      </BrowserRouter>
-
     )
 }

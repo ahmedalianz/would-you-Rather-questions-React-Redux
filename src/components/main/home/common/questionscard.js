@@ -1,21 +1,19 @@
 import React from 'react'
 import Question from './question'
+import {useSelector} from 'react-redux'
 
-export default function QuestionsCard({asker,questions}) {
-//arranging the questions to show in each asker section
-const filterd_Questions=questions.filter(q=>q.author===asker.id)
-
-return filterd_Questions.length>0?(
+export default function QuestionsCard({question}) {
+    let {users}=useSelector(state=>state.users)
+    let asker=users.find(user =>user.id === question.author)
+return (
 <div className="card" style={{width:'20rem'}}>
-    <img src={asker.avatarURL} className="card-img-top avatar-q" alt="avatar" />
+    <div className="d-flex align-items-center">
+    <img className="q-avatar me-2" src={asker.avatarURL}/>
+    <h4><span>{asker.name}</span>{" "}asks</h4>
+    </div>
     <div className="card-body">
-        <h5 className="card-title">Questions by {asker.name}</h5>
-        {filterd_Questions.map((question)=>(
-        <Question key={question.id} question={question} />
-        ))}
+        <Question question={question}/>
     </div>
 </div>
-):(
-    ''
 )
 }

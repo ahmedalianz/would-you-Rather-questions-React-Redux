@@ -11,8 +11,8 @@ export default function Login() {
     const dispatch = useDispatch()
 
     const handleSubmit=(e)=>{
+        e.preventDefault()
         if(selection==='Select User'){
-            e.preventDefault()
             toast.warning('Please Select a User')
         }else{
             const user=users.find(u=>u.name===selection)

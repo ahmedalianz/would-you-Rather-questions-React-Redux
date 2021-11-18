@@ -2,9 +2,9 @@ import React,{useState} from 'react'
 import {useDispatch ,useSelector} from 'react-redux'
 import {addQuestion} from '../../../redux/questions/unansweredq'
 import { v4 as uuid } from 'uuid'
-import { toast } from 'react-toastify'
 import { setCurrentUser } from '../../../redux/users/currentUser'
 import { setUsers } from '../../../redux/users/users'
+import { useHistory } from "react-router-dom";
 export default function NewQuestion() {
   const [option1,setOption1]=useState('')
   const [option2,setOption2]=useState('')
@@ -12,6 +12,7 @@ export default function NewQuestion() {
     const {questions} = useSelector(state => state.questions)
     const {user} = useSelector(state => state.currentUser)
     const {users}=useSelector(state => state.users)
+    let history = useHistory()
   const handleSubmit=(e)=>{
     e.preventDefault()
     let newID=uuid()
@@ -34,7 +35,7 @@ export default function NewQuestion() {
     let userIndex=users.indexOf(user)
     let editedUsers=Object.assign({},users,{[`${userIndex}`]:editedUser})
     dispatch(setUsers(Object.values(editedUsers)))
-    toast.info('New question added Go Home page to view it')
+    history.push("/");
   }
     return (
             <div className="card text-left">

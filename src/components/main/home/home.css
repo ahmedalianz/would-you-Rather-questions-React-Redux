@@ -29,3 +29,6 @@
 .progress-barz span{
     position: absolute;top:15px;left: 50px;
 }
+.q-avatar{
+ width: 70px;height: 70px
+}

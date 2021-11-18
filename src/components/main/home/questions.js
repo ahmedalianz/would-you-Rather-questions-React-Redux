@@ -2,7 +2,6 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import QuestionsCard from './common/questionscard'
 export default function Unanswered({change,otherPage}) {
-let {users}=useSelector(state=>state.users)
 const {questions }= useSelector(state => state.questions)
 //getting all questions ids
 let questionsIds=questions.map(q => q.id)
@@ -20,25 +19,27 @@ const answered_Questions=questions.filter(q=>answered_Questions_Ids_ForUser.incl
 
     return otherPage==='Answered Questions'?(
         <div className="d-flex flex-column">
-                {users.map(u =>(
+            <button className="btn btn-primary mt-4 " onClick={change}>Go to{" "}{otherPage}</button>
+                {unAnswered_Questions.sort(function(a,b){
+                    return a.timestamp -b.timestamp
+                }).map(question =>(
                     <QuestionsCard
-                    key={u.id}
-                    asker={u}
-                    questions={unAnswered_Questions}
+                    key={question.id}
+                    question={question}
                     />
                 ))}
-                <button className="btn btn-primary mt-4 " onClick={change}>{otherPage}</button>
         </div>
     ):(
         <div className="d-flex flex-column">
-        {users.map(u =>(
-            <QuestionsCard
-            key={u.id}
-            asker={u}
-            questions={answered_Questions}
-            />
-        ))}
-        <button className="btn btn-primary mt-4 " onClick={change}>{otherPage}</button>
+            <button className="btn btn-primary mt-4 " onClick={change}>Go {" "}{otherPage}</button>
+            {answered_Questions.sort(function(a,b){
+                    return a.timestamp -b.timestamp
+                }).map(question =>(
+                    <QuestionsCard
+                    key={question.id}
+                    question={question}
+                    />
+                ))}
 </div>
     )
 }
